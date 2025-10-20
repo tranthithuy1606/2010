@@ -1,146 +1,217 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Thư 20/10 gửi em Tuyết Anh</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thư 20/10 💌</title>
 <style>
-  :root{ --paper:#fffaf5; --ink:#43253f; --accent:#e91e63; --bg1:#fce4ec; --bg2:#fff0f7; }
+  :root{
+    --bg1:#ffe9f0; --bg2:#fff0f7; --ink:#5a2a46; --accent:#ff2e88;
+    --paper:#fffaf7; --line:#ffd3e4;
+  }
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0}
+  html,body{height:100%;margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial}
   body{
-    background:linear-gradient(to top,var(--bg1) 0%,var(--bg2) 60%);
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink); overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; color:var(--ink);
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
   }
 
-  /* --- ENVELOPE --- */
-  .stage{text-align:center; z-index:10; position:relative}
-  .btn{margin-top:12px; border:none; padding:10px 16px; border-radius:999px;
-       background:#ffffffc8; box-shadow:0 10px 22px rgba(0,0,0,.12);
-       backdrop-filter:blur(6px); color:#7a2e4d; font-weight:700; cursor:pointer}
-  .btn:hover{transform:translateY(-1px)}
-  .envelope{width:min(360px,88vw); height:230px; margin:0 auto; perspective:1200px;
-            filter:drop-shadow(0 18px 30px rgba(0,0,0,.16))}
-  .env-body{width:100%; height:100%; position:relative; overflow:hidden;
-            background:linear-gradient(180deg,#ffe9ef,#ffdbe7); border-radius:12px; border:1px solid #ffd1e1}
-  .flap{position:absolute; left:0; right:0; top:0; height:60%; transform-origin:50% 0%;
-        background:linear-gradient(180deg,#ffc1d6,#ffb0cd); clip-path:polygon(0 0,100% 0,50% 100%);
-        border-top-left-radius:12px; border-top-right-radius:12px; box-shadow:inset 0 -6px 10px rgba(0,0,0,.08)}
-  .seal{position:absolute; left:50%; top:44%; transform:translate(-50%,-50%);
-        width:64px; height:64px; border-radius:50%; background:radial-gradient(circle at 30% 30%,#ff8fb3,#e91e63 70%);
-        border:6px solid #ffd1e1; color:#fff; display:flex; align-items:center; justify-content:center; font-size:28px}
-  .sheet{position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
-         width:86%; height:78%; background:#fffaf5; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.1)}
+  /* ===== float icons ===== */
+  .floaters{position:fixed; inset:0; pointer-events:none; z-index:0}
+  .floater{
+    position:absolute; width:32px; height:32px; opacity:.95;
+    filter:drop-shadow(0 6px 12px rgba(255,120,185,.35));
+    left:var(--x); bottom:-40px;
+    animation: drift var(--dur) linear infinite;
+  }
+  @keyframes drift{
+    0%{ transform: translateY(0) translateX(0) rotate(0) }
+    50%{ transform: translateY(-55vh) translateX(12vw) rotate(12deg) }
+    100%{ transform: translateY(-110vh) translateX(-8vw) rotate(-8deg) }
+  }
 
-  .open .flap{animation:flip 1.2s ease forwards}
+  /* ===== envelope stage ===== */
+  .stage{
+    position:relative; z-index:1; height:100%;
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
+  }
+  /* thu nhỏ tổng thể phong bì cho gọn xinh */
+  .stage .scale{ transform:scale(.8); transform-origin:center; }
+
+  .envelope{
+    width:min(280px,72vw); height:180px; margin:0 auto; perspective:1200px;
+    filter:drop-shadow(0 10px 24px rgba(0,0,0,.12));
+  }
+  .env-body{
+    position:relative; width:100%; height:100%; overflow:hidden;
+    background:linear-gradient(180deg,#ffe0ea,#ffd4e3);
+    border:1px solid #ffd1e1; border-radius:14px;
+  }
+  .flap{
+    position:absolute; inset:0 auto auto 0; width:100%; height:60%; top:0;
+    transform-origin:50% 0%;
+    background:linear-gradient(180deg,#ffc1d6,#ffb0cd);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    border-top-left-radius:14px; border-top-right-radius:14px;
+    box-shadow:inset 0 -6px 10px rgba(0,0,0,.08);
+  }
+  .seal{
+    position:absolute; left:50%; top:44%; transform:translate(-50%,-50%);
+    width:48px; height:48px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,#ff8fb3,#e91e63 70%);
+    border:5px solid #ffd1e1; color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:22px;
+  }
+  .sheet{
+    position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
+    width:84%; height:75%; background:#fffaf5; border-radius:10px;
+    box-shadow:0 4px 14px rgba(0,0,0,.1);
+  }
+
+  .btn{
+    border:0; padding:10px 18px; border-radius:999px; font-weight:700; cursor:pointer;
+    background:#ffffffc8; color:#7a2e4d; backdrop-filter:blur(6px);
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+  }
+  .btn:active{transform:translateY(1px)}
+
+  /* open animations */
+  .open .flap{animation:flip 1.1s ease forwards}
   @keyframes flip{0%{transform:rotateX(0)}60%{transform:rotateX(-170deg)}100%{transform:rotateX(-180deg)}}
-  .open .seal{animation:pop .5s ease forwards}
-  @keyframes pop{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-200%) scale(0)}}
-  .open .sheet{animation:slideUp 1.25s .45s ease forwards}
+  .open .seal{animation:pop .45s ease forwards}
+  @keyframes pop{to{transform:translate(-50%,-200%) scale(0)}}
+  .open .sheet{animation:slideUp 1.1s .35s ease forwards}
   @keyframes slideUp{
     0%{transform:translate(-50%,0);opacity:1}
-    70%{transform:translate(-50%,-140%);opacity:1}
-    100%{transform:translate(-50%,-150%);opacity:0}
+    70%{transform:translate(-50%,-120%);opacity:1}
+    100%{transform:translate(-50%,-130%);opacity:0}
   }
 
-  /* --- LETTER --- */
+  /* ===== letter ===== */
   .wrap{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    padding:18px; opacity:0; visibility:hidden; pointer-events:none; z-index:12;
+    position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center;
+    padding:18px; opacity:0; visibility:hidden; pointer-events:none;
     transition:opacity .6s ease, visibility .6s step-end;
   }
   .wrap.show{opacity:1; visibility:visible; pointer-events:auto}
-
   .letter{
-    width:min(820px,92vw); background:var(--paper); border-radius:20px;
-    box-shadow:0 14px 40px rgba(0,0,0,.12); padding:clamp(18px,3.5vw,34px);
+    width:min(860px,92vw); background:var(--paper); border-radius:22px;
     border:1px solid rgba(0,0,0,.05);
-    background-image:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.85)),
-                     repeating-linear-gradient(180deg,rgba(255,192,203,.12) 0 1px,transparent 1px 48px)
+    box-shadow:0 18px 50px rgba(0,0,0,.14);
+    padding:clamp(18px,3.6vw,34px);
+    background-image:
+      linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.92)),
+      repeating-linear-gradient(180deg, var(--line) 0 1px, transparent 1px 48px);
   }
-  h1{margin:6px 0 8px; text-align:center; color:var(--accent); font-size:clamp(24px,5.5vw,44px)}
-  .hand{font-size:clamp(18px,3.3vw,28px); line-height:1.55}
-  .hand p{margin:.35em 0}
-  .closing{text-align:right; margin-top:10px; font-size:clamp(20px,3.5vw,30px); color:#b31359}
+  h1{
+    margin:4px 0 14px; text-align:center;
+    color:var(--accent); font-weight:800; letter-spacing:.3px;
+    font-size:clamp(22px,5.5vw,40px);
+  }
+  .hand{font-size:clamp(16px,3.2vw,20px); line-height:1.75}
+  .hand p{margin:.6em 0}
+  .closing{margin-top:10px; text-align:right; color:#c01770; font-weight:700}
 
-  /* --- PETALS --- */
+  /* petals canvas */
   canvas{position:fixed; bottom:0; left:0; width:100vw; height:58vh; z-index:0}
 </style>
 </head>
 <body>
-  <!-- Phong bì -->
+
+  <!-- float icons -->
+  <div class="floaters" id="floaters"></div>
+
+  <!-- envelope stage -->
   <div class="stage" id="stage">
-    <div class="envelope" id="envelope">
-      <div class="env-body">
-        <div class="flap"></div>
-        <div class="seal">💮</div>
-        <div class="sheet" id="sheet"></div>
+    <div class="scale">
+      <div class="envelope" id="envelope">
+        <div class="env-body">
+          <div class="flap"></div>
+          <div class="seal">💮</div>
+          <div class="sheet" id="sheet"></div>
+        </div>
       </div>
     </div>
     <button class="btn" id="openBtn">Mở thư của em 💌</button>
   </div>
 
-  <!-- Bức thư -->
+  <!-- letter -->
   <div class="wrap" id="letterWrap" aria-hidden="true">
     <div class="letter">
+      <!-- ✏️ SỬA TÊN NGƯỜI NHẬN Ở ĐÂY -->
       <h1>💐 Chúc Mừng Tuyết Anh Ngày 20/10 💐</h1>
+
       <div class="hand">
+        <!-- ✏️ SỬA NỘI DUNG THƯ Ở ĐÂY -->
         <p>Nhân dịp Ngày Phụ Nữ Việt Nam 20/10, chúc <b>Tuyết Anh</b> một ngày thật vui vẻ, ý nghĩa và đong đầy những điều tốt đẹp.</p>
         <p>Chúc em luôn giữ được nụ cười rạng rỡ, sự tự tin và năng lượng tích cực vốn có. Hãy luôn mạnh mẽ, xinh đẹp và là nguồn cảm hứng cho những người xung quanh nhé.</p>
         <p>Anh chúc em sẽ luôn thành công trên con đường mình chọn, gặt hái được nhiều thành tựu xứng đáng với sự nỗ lực của bản thân. Và đừng quên yêu thương chính mình, tận hưởng mọi khoảnh khắc tuyệt vời của cuộc sống.</p>
         <p><b>Mọi điều tốt đẹp nhất sẽ đến với em!</b> 💖</p>
       </div>
+
       <div class="closing">— Gửi em 💞</div>
     </div>
   </div>
 
-  <!-- Cánh hoa bay -->
+  <!-- petals -->
   <canvas id="petals"></canvas>
 
 <script>
-  // ====== MỞ THƯ: chờ animation kết thúc rồi mới hiện thư ======
-  const openBtn = document.getElementById('openBtn');
-  const envelope = document.getElementById('envelope');
-  const stage = document.getElementById('stage');
-  const letterWrap = document.getElementById('letterWrap');
-  const sheetEl = document.getElementById('sheet');
+/* ===== float icons (no upload; dùng Twemoji CDN) ===== */
+const ICONS = [
+  "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2764.svg", // ❤️
+  "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f339.svg", // 🌹
+  "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f33c.svg", // 🌼
+  "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f337.svg"  // 🌷
+];
+const floaters = document.getElementById('floaters');
+function spawnIcon(){
+  const d=document.createElement('img');
+  d.className='floater';
+  d.src=ICONS[Math.floor(Math.random()*ICONS.length)];
+  d.style.setProperty('--x', Math.random()*100 + 'vw');
+  d.style.setProperty('--dur', (10+Math.random()*12)+'s');
+  floaters.appendChild(d);
+  setTimeout(()=>d.remove(),14000);
+}
+for(let i=0;i<18;i++) setTimeout(spawnIcon, i*350);
+setInterval(spawnIcon, 900);
 
-  openBtn.addEventListener('click', () => {
-    envelope.classList.add('open');
-    // khi tờ giấy (sheet) trượt lên xong thì hiện thư
-    sheetEl.addEventListener('animationend', () => {
-      stage.style.display = 'none';
-      letterWrap.classList.add('show');
-    }, { once: true });
+/* ===== mở thư: hiển thị khi animation kết thúc ===== */
+const openBtn = document.getElementById('openBtn');
+const envelope = document.getElementById('envelope');
+const sheetEl = document.getElementById('sheet');
+const stage = document.getElementById('stage');
+const letterWrap = document.getElementById('letterWrap');
+
+openBtn.addEventListener('click', ()=>{
+  envelope.classList.add('open');
+  sheetEl.addEventListener('animationend', ()=>{
+    stage.style.display='none';
+    letterWrap.classList.add('show');
+  }, {once:true});
+});
+
+/* ===== petals (emoji nhẹ) ===== */
+const cvs=document.getElementById('petals'), ctx=cvs.getContext('2d');
+function resize(){ cvs.width=innerWidth; cvs.height=Math.max(260, innerHeight*0.58); }
+resize(); addEventListener('resize', resize);
+
+const PETALS = Array.from({length:24}).map(()=>({
+  x:Math.random()*innerWidth, y:Math.random()*cvs.height,
+  e:['🌸','💗','🌷'][Math.floor(Math.random()*3)],
+  v:.5+Math.random(), d:.2+Math.random()*.6
+}));
+(function loop(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  ctx.font='20px serif';
+  PETALS.forEach(p=>{
+    ctx.fillText(p.e, p.x, p.y);
+    p.y += p.v; p.x += Math.sin(p.y*0.02)*p.d;
+    if(p.y>cvs.height){ p.y=-20; p.x=Math.random()*innerWidth; }
   });
-
-  // ====== HOA RƠI ======
-  const cvs = document.getElementById('petals');
-  const ctx = cvs.getContext('2d');
-  function resize(){ cvs.width = innerWidth; cvs.height = Math.max(260, innerHeight*0.58); }
-  resize(); addEventListener('resize', resize);
-
-  const PETALS = Array.from({length: 24}).map(() => ({
-    x: Math.random()*innerWidth,
-    y: Math.random()*cvs.height,
-    e: ['🌸','💗','🌷'][Math.floor(Math.random()*3)],
-    v: 0.5 + Math.random(),
-    d: 0.2 + Math.random()*0.6
-  }));
-
-  (function loop(){
-    ctx.clearRect(0,0,cvs.width,cvs.height);
-    ctx.font = '20px serif';
-    PETALS.forEach(p=>{
-      ctx.fillText(p.e, p.x, p.y);
-      p.y += p.v;
-      p.x += Math.sin(p.y*0.02)*p.d;
-      if(p.y > cvs.height){ p.y = -20; p.x = Math.random()*innerWidth; }
-    });
-    requestAnimationFrame(loop);
-  })();
+  requestAnimationFrame(loop);
+})();
 </script>
 </body>
 </html>
